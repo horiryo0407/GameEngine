@@ -13,6 +13,7 @@
 #include "Input.h"
 
 
+
 HWND hWnd = nullptr;
 
 
@@ -68,8 +69,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	}
 
 	Camera::Initialize(); // カメラの初期化
-
-	Input::Initialize();
+	Input::Initialize(hWnd); // 入力の初期化
+	
+	
 
 
 
@@ -109,13 +111,24 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		//ゲームの処理
 		Camera::Update(); // カメラの更新
 		Input::Update();
+		if (Input::IsMouseButtonDown(0))
+			OutputDebugStringA("左クリック押した\n");
+		if (Input::IsMouseButtonUp(0))
+			OutputDebugStringA("左クリック離した\n");
 
 		// 入力チェック（例: ESCで終了）
-		if (Input::IsKey(DIK_ESCAPE))
+		if (Input::IsKeyDown(DIK_ESCAPE))
 		{
-			PostQuitMessage(0);
+			static int cnt = 0;
+			cnt++;
+			if (cnt >= 3)
+			{
+				PostQuitMessage(0);
+			}
 		}
-
+		XMVECTOR pos = Input::GetMousePosition();
+		float mx = XMVectorGetX(pos);
+		float my = XMVectorGetY(pos);
 		Direct3D::BeginDraw();
 
 		//描画処理
@@ -133,7 +146,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		static Transform trans;
 		trans.position_.x = 0.1f;
 		trans.position_.y = -0.7f;
-		trans.rotate_.y += 0.17f;
+		trans.rotate_.y += 0.03f;
 		trans.Calculation();
 	   // XMMATRIX Mtrs = trans.GetWorldMatrix();
 		//sprite->Draw(Mtrs);
@@ -147,6 +160,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	//dice->Release();
 	//sprite->Release();
 	//SAFE_DELETE(dice);
+
 
 	Direct3D::Release();
 	Input::Release();
@@ -233,6 +247,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
+	case WM_MOUSEMOVE:
+		Input::SetMousePosition(LOWORD(lParam), HIWORD(lParam));
+		OutputDebugStringA((std::to_string(LOWORD(lParam)) + "," + std::to_string(HIWORD(lParam)) + "\n").c_str());
+		return 0;
+
+	
+	
 	case WM_COMMAND:
 		{
 			int wmId = LOWORD(wParam);
@@ -258,6 +279,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			EndPaint(hWnd, &ps);
 		}
 		break;
+
+	
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
