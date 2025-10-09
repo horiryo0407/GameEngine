@@ -125,7 +125,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		float my = XMVectorGetY(pos);
 		Direct3D::BeginDraw();
 
-	
+		pRootJob->DrawSub();
 
 		Direct3D::EndDraw();
 	}

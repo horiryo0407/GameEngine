@@ -13,3 +13,13 @@ GameObject::GameObject(GameObject* parent, const std::string& name)
 GameObject::~GameObject()
 {
 }
+
+void GameObject::DrawSub()
+{
+	Draw();
+
+	for (auto child : childList_)
+	{
+		child->DrawSub();
+	}
+}

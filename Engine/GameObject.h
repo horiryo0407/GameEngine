@@ -7,6 +7,7 @@
 using std::list;
 class GameObject
 {
+protected:
 	list<GameObject*> childList_;
 	Transform	transform_;
 	GameObject* pParent_;
@@ -21,4 +22,5 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	virtual void Release() = 0;
+	void DrawSub();
 };
