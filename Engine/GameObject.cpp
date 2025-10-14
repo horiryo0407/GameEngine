@@ -23,3 +23,15 @@ void GameObject::DrawSub()
 		child->DrawSub();
 	}
 }
+
+void GameObject::UpdateSub()
+{
+	this->Update();
+
+	for (auto child : childList_)
+	{
+		child->UpdateSub();
+	}
+}
+
+

@@ -2,6 +2,7 @@
 //
 
 #include "framework.h"
+#include <cstdlib>
 #include "MyFirstGame.h"
 #include "Engine/Direct3D.h"
 #include "Engine/Camera.h"
@@ -9,6 +10,10 @@
 #include "Engine/Fbx.h"
 #include "Engine/Input.h"
 #include "Engine/RootJob.h"
+#include <string>
+using namespace std;
+
+#pragma comment(lib, "winmm.lib")
 
 
 
@@ -98,11 +103,42 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			DispatchMessage(&msg);
 		}
 		//メッセージなし
+		//static long cnt = 0;
+		//string str = "Sample Game cnt:" + to_string(cnt++);
+		static DWORD countFps = 0;
+		
+		DWORD nowTime = timeGetTime();
+
+		static DWORD startTime = timeGetTime();
+		
+		static DWORD lastUpdateTime = nowTime;
+
+		if (nowTime - startTime >= 1000)
+		{
+			string str = "FPS:" + to_string(1000.0f / (nowTime - startTime)) + ", " + to_string(countFps);
+			SetWindowTextA(hWnd, str.c_str());
+			countFps = 0;
+			startTime = nowTime;
+		}
+
+
+		if (nowTime - lastUpdateTime <= 1000.0f / 60)
+		{
+			continue;
+		}
+		lastUpdateTime = nowTime;
+
+		countFps++;
+		
+
+		/*char str[16];
+		wsprintf(str, "%u", nowTime);*/
+
 
 		//ゲームの処理
 		Camera::Update(); // カメラの更新
 		Input::Update();
-		pRootJob->Update();
+		pRootJob->UpdateSub();
 
 
 		if (Input::IsMouseButtonDown(0))
