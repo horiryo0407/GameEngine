@@ -7,6 +7,8 @@
 using std::list;
 class GameObject
 {
+private:
+	bool isDead_;
 protected:
 	list<GameObject*> childList_;
 	Transform	transform_;
@@ -25,6 +27,9 @@ public:
 	void DrawSub();
 	void UpdateSub();
 	void ReleaseSub();
+	void SetPosition(XMFLOAT3 position);
+	void SetPosition(float x, float y, float z);
+	void KillMe();
 	template <class T>
 	GameObject* Instantiate(GameObject* parent)
 	{
