@@ -105,6 +105,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		//メッセージなし
 		//static long cnt = 0;
 		//string str = "Sample Game cnt:" + to_string(cnt++);
+		timeBeginPeriod(1);
 		static DWORD countFps = 0;
 		
 		DWORD nowTime = timeGetTime();
@@ -112,6 +113,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		static DWORD startTime = timeGetTime();
 		
 		static DWORD lastUpdateTime = nowTime;
+
+		timeEndPeriod(1);
 
 		if (nowTime - startTime >= 1000)
 		{
@@ -168,7 +171,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	Direct3D::Release();
 	Input::Release();
-	pRootJob->Release();
+	pRootJob->ReleaseSub();
 	
 	
 

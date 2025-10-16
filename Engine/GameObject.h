@@ -24,4 +24,5 @@ public:
 	virtual void Release() = 0;
 	void DrawSub();
 	void UpdateSub();
+	void ReleaseSub();
 };
