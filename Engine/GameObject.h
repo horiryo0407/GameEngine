@@ -25,4 +25,12 @@ public:
 	void DrawSub();
 	void UpdateSub();
 	void ReleaseSub();
+	template <class T>
+	GameObject* Instantiate(GameObject* parent)
+	{
+		T* obj = new T(parent);
+		obj->Initialize();
+		childList_.push_back(obj);
+		return (obj);
+	}
 };

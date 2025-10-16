@@ -8,6 +8,11 @@ GameObject::GameObject()
 GameObject::GameObject(GameObject* parent, const std::string& name)
 	: pParent_(parent), objectName_(name)
 {
+	if (pParent_ != nullptr)
+	{
+		pParent_->childList_.push_back(this);
+		transform_.pParent_ = &(pParent_->transform_);
+	}
 }
 
 GameObject::~GameObject()
