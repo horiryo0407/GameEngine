@@ -32,6 +32,7 @@ void Player::Update()
 	if (transform_.rotate_.y > 720.0f)
 	{
 		KillMe();
+		return;
 
 	}
 
