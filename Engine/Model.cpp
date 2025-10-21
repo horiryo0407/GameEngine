@@ -1,8 +1,9 @@
 #include "Model.h"
+#include "Direct3D.h"
 
 namespace Model
 {
-    std::vector<ModelData*> modelList;
+	std::vector<ModelData*> modelList;
 }
 
 int Model::Load(std::string fileName)
@@ -39,9 +40,28 @@ void Model::SetTransform(int hModel, Transform transform)
 void Model::Draw(int hModel)
 {
 	modelList[hModel]->pfbx_
-		             ->Draw(modelList[hModel]->transform_);
+					 ->Draw(modelList[hModel]->transform_);
 }
 
 void Model::Release()
 {
+	bool isReffered = false;
+	for (int i = 0; i< modelList.size(); i++)
+	{
+		for (int j = i + 1; j < modelList.size();j++)
+		{
+			if (modelList[i]->pfbx_ == modelList[j]->pfbx_)
+			{
+				isReffered = true;
+				break;
+			}
+		}
+		if (isReffered == false)
+		{
+			SAFE_DELETE(modelList[i]->pfbx_);
+		}
+		SAFE_DELETE(modelList[i]);
+		
+	}
+	modelList.clear();
 }

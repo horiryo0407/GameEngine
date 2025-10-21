@@ -10,6 +10,7 @@
 #include "Engine/Fbx.h"
 #include "Engine/Input.h"
 #include "Engine/RootJob.h"
+#include "Engine/Model.h"
 #include <string>
 using namespace std;
 
@@ -172,6 +173,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	Direct3D::Release();
 	Input::Release();
 	pRootJob->ReleaseSub();
+	Model::Release();
 	
 	
 

@@ -10,7 +10,6 @@ GameObject::GameObject(GameObject* parent, const std::string& name)
 {
 	if (pParent_ != nullptr)
 	{
-		pParent_->childList_.push_back(this);
 		transform_.pParent_ = &(pParent_->transform_);
 	}
 }

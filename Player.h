@@ -7,6 +7,7 @@ class Player :
     public GameObject
 {
 	Fbx* pFbx_;
+	int hModel_;
 	ChildOden* pRChildOden_;
 	ChildOden* pLChildOden_;
 public:

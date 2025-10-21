@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Engine/Fbx.h"
 #include "ChildOden.h"
+#include "Engine/Model.h"
 
 
 Player::Player(GameObject* parent)
@@ -15,8 +16,8 @@ Player::~Player()
 
 void Player::Initialize()
 {
-	pFbx_ = new Fbx;
-	pFbx_->Load("Oden.fbx");
+	/*pFbx_ = new Fbx;
+	pFbx_->Load("Oden.fbx");*/
 	transform_.scale_.x = 0.7f;
 	transform_.scale_.y = 0.7f;
 	transform_.scale_.z = 0.7f;
@@ -24,6 +25,8 @@ void Player::Initialize()
 	pLChildOden_ = (ChildOden*)Instantiate<ChildOden>(this);
 	pRChildOden_->SetPosition(2.0f, 1.0f, 0.0f);
 	pLChildOden_->SetPosition(-2.0f, 1.0f, 0.0f);
+	hModel_ = Model::Load("Oden.fbx");
+	assert(hModel_ >= 0);
 }
 
 void Player::Update()
@@ -41,10 +44,8 @@ void Player::Update()
 
 void Player::Draw()
 {
-	if (pFbx_)
-	{
-		pFbx_->Draw(transform_);
-	}
+	Model::SetTransform(hModel_, transform_);
+	Model::Draw(hModel_);
 }
 
 void Player::Release()
