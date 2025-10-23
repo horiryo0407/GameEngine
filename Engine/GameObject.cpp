@@ -30,6 +30,7 @@ void GameObject::DrawSub()
 
 void GameObject::UpdateSub()
 {
+	transform_.Calculation();
 	this->Update();
 
 	for (auto child : childList_)
