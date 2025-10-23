@@ -1,6 +1,7 @@
 #include "Direct3D.h"
 #include "SceneManager.h"
 #include "..\\PlayScene.h"
+#include "..\\TestScene.h"
 
 SceneManager::SceneManager(GameObject* parent)
 	:GameObject(parent, "SceneManager"), currentSceneID_(SCENE_ID_TEST)
@@ -15,7 +16,7 @@ void SceneManager::Initialize()
 {
 	currentSceneID_ = SCENE_ID_TEST;
 	currentSceneID_ = currentSceneID_;
-	Instantiate<PlayScene>(this);
+	Instantiate<TestScene>(this);
 }
 
 void SceneManager::Update()
@@ -36,7 +37,7 @@ void SceneManager::Update()
 			Instantiate<PlayScene>(this);
 			break;
 		case SCENE_ID_TEST:
-			//Instantiate<PlayScene>(this);
+			Instantiate<TestScene>(this);
 			break;
 		
 		}

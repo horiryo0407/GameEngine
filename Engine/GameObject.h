@@ -30,6 +30,10 @@ public:
 	void SetPosition(XMFLOAT3 position);
 	void SetPosition(float x, float y, float z);
 	void KillMe();
+
+	GameObject* GetRootJob();
+	GameObject* FindChildObject(const std::string& name);
+	GameObject* FindObject(const std::string& name);
 	template <class T>
 	GameObject* Instantiate(GameObject* parent)
 	{
