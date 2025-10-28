@@ -17,13 +17,12 @@ TestScene::~TestScene()
 
 void TestScene::Initialize()
 {
-	
+	hModel_ = Model::Load("Cube.fbx");
+	assert(hModel_ >= 0);
 }
 
 void TestScene::Update()
 {
-
-	hModel_ = Model::Load("Cube.fbx");
 
 	transform_.scale_.x = 0.7f;
 	transform_.scale_.y = 0.7f;
