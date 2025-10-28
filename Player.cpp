@@ -25,7 +25,7 @@ void Player::Initialize()
 	pLChildOden_ = (ChildOden*)Instantiate<ChildOden>(this);
 	pRChildOden_->SetPosition(2.0f, 1.0f, 0.0f);
 	pLChildOden_->SetPosition(-2.0f, 1.0f, 0.0f);
-	hModel_ = Model::Load("Oden.fbx");
+	hModel_ = Model::Load("Cube.fbx");
 	assert(hModel_ >= 0);
 }
 

@@ -73,7 +73,6 @@ void GameObject::SetPosition(XMFLOAT3 position)
 void GameObject::SetPosition(float x, float y, float z)
 {
 	transform_.position_ = { x,y,z };
-
 }
 
 void GameObject::KillMe()
