@@ -3,6 +3,7 @@
 class PlayScene :
     public GameObject
 {
+	
 public:
 	PlayScene(GameObject* parent);
 	~PlayScene();
@@ -10,5 +11,6 @@ public:
 	void Update() override;
 	void Draw() override;
 	void Release() override;
+	
 };
 
