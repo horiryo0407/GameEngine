@@ -5,15 +5,18 @@
 #include <list>
 
 using std::list;
+class SphereCollider;
+
 class GameObject
 {
 private:
 	bool isDead_;
 protected:
 	list<GameObject*> childList_;
-	Transform	transform_;
-	GameObject* pParent_;
-	std::string	objectName_;
+	Transform		  transform_;
+	GameObject*		  pParent_;
+	std::string		  objectName_;
+	SphereCollider*   pCollider_;
 
 public:
 	GameObject();
@@ -34,6 +37,9 @@ public:
 	GameObject* GetRootJob();
 	GameObject* FindChildObject(const std::string& name);
 	GameObject* FindObject(const std::string& name);
+
+	void AddCollider(SphereCollider* pCollider);
+	void Collision(GameObject* pTarget);
 	template <class T>
 	GameObject* Instantiate(GameObject* parent)
 	{
