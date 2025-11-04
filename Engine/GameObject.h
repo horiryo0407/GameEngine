@@ -40,6 +40,7 @@ public:
 
 	void AddCollider(SphereCollider* pCollider);
 	void Collision(GameObject* pTarget);
+	void RoundRobin(GameObject* pTarget);
 	template <class T>
 	GameObject* Instantiate(GameObject* parent)
 	{
