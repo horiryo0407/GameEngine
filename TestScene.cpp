@@ -5,6 +5,7 @@
 
 
 
+
 TestScene::TestScene(GameObject* parent)
 	:GameObject(parent, "TestScene")
 	, hModel_(-1)
