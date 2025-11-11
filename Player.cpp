@@ -63,8 +63,7 @@ void Player::Update()
 	{
 		transform_.position_.y -= 0.2f;
 	}
-	transform_.position_.y = std::clamp(transform_.position_.y, -5.0f, 5.0f);
-	printf("Player Y: %f\n", transform_.position_.y);
+	
 
 	fireTimer_ -= 1.0f / 60.0f; // 60FPS‘z’è
 	if (Input::IsKey(DIK_SPACE) && fireTimer_ <= 0)
