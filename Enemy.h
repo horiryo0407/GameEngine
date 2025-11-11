@@ -5,6 +5,7 @@
 class Enemy : public GameObject
 {
 	Fbx* pFbx;
+	float timer_;
 public:
 	Enemy(GameObject* parent);
 	~Enemy();
@@ -12,4 +13,5 @@ public:
 	void Update() override;
 	void Draw() override;
 	void Release() override;
+	void onCollision(GameObject* pTarget) override;
 };

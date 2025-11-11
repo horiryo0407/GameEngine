@@ -35,7 +35,7 @@ void GameObject::UpdateSub()
 	transform_.Calculation();
 	this->Update();
 
-	//RoundRobin(GetRootJob());
+	RoundRobin(GetRootJob());
 	for (auto child : childList_)
 	{
 		child->UpdateSub();
@@ -150,8 +150,9 @@ void GameObject::Collision(GameObject* pTarget)
 	if (dist <= thre)
 	{
 		//なんかする
-		MessageBoxA(NULL, "ぶつかったああ", "当たったかどうか", MB_OK);
-
+		/*MessageBoxA(NULL, "本当にぶつかったの？", "当たったかどうか", MB_OK);*/
+		this->onCollision(pTarget);
+		pTarget->onCollision(this);
 	}
 
 	
@@ -167,7 +168,7 @@ void GameObject::RoundRobin(GameObject* pTarget)
 
 
 	//自分とターゲット自体のコライダーの当たり判定
-	if (pTarget->pCollider_ != nullptr)
+	if (pTarget->pCollider_ != nullptr && pTarget->pCollider_ != pCollider_)
 	Collision(pTarget);
 
 

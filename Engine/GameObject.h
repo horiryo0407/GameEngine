@@ -27,6 +27,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	virtual void Release() = 0;
+	virtual void onCollision(GameObject* pTarget) {}
 	void DrawSub();
 	void UpdateSub();
 	void ReleaseSub();
@@ -41,6 +42,7 @@ public:
 	void AddCollider(SphereCollider* pCollider);
 	void Collision(GameObject* pTarget);
 	void RoundRobin(GameObject* pTarget);
+	const std::string& GetName() const { return objectName_; }
 	template <class T>
 	GameObject* Instantiate(GameObject* parent)
 	{
