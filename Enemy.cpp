@@ -27,7 +27,7 @@ void Enemy::Update()
 	float Xspeed = 0.05f;   
 	float Yspeed = 0.03f;
 
-	// timer_ を使って左右に往復
+	//timer_ を使って左右に往復
 	transform_.position_.x = screenWidth * sin(timer_);
 	transform_.position_.y = screenHeight * cos(timer_ * 0.6f);
 	timer_ += Xspeed;
@@ -35,11 +35,23 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	pFbx->Draw(transform_);
+	for(int i = 0; i < 3; i++)
+	{
+		transform_.position_.z = 50.0f + i * 5.0f; 
+		// 少しずつ手前に配置
+		pFbx->Draw(transform_);
+	}
+	//pFbx->Draw(transform_);
 }
 
 void Enemy::Release()
 {
+	if (pFbx)
+	{
+		pFbx->Release();
+		delete pFbx;
+		pFbx = nullptr;
+	}
 }
 
 void Enemy::onCollision(GameObject* pTarget)

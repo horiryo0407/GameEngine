@@ -66,7 +66,7 @@ void Player::Update()
 	
 
 	fireTimer_ -= 1.0f / 60.0f; // 60FPS‘z’è
-	if (Input::IsKey(DIK_SPACE) && fireTimer_ <= 0)
+	if (Input::IsKey(DIK_B) && fireTimer_ <= 0)
 	{
 		Bullet* b = (Bullet*)Instantiate<Bullet>(GetRootJob());
 		b->SetPosition(transform_.position_);
