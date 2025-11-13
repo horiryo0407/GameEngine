@@ -6,12 +6,14 @@ enum SCENE_ID
 {
 	SCENE_ID_TEST,
 	SCENE_ID_PLAY,
+	SCENE_ID_RESULT,
 	SCENE_ID_MAX
 };
 class SceneManager : public GameObject
 {
 	SCENE_ID currentSceneID_;
 	SCENE_ID nextSceneID_;
+	static SceneManager* instance_;
 public:
 	SceneManager(GameObject* parent);
 	~SceneManager();
@@ -20,4 +22,5 @@ public:
 	void Draw() override;
 	void Release() override;
 	void ChangeScene(SCENE_ID _nextScene);
+	static SceneManager* GetInstance() { return instance_; }
 };

@@ -1,5 +1,7 @@
 #include "Enemy.h"
 #include "Engine/SphereCollider.h"
+#include "Engine/SceneManager.h"
+#include "ResultScene.h"
 
 Enemy::Enemy(GameObject* parent)
 {
@@ -59,5 +61,9 @@ void Enemy::onCollision(GameObject* pTarget)
 	if (pTarget->GetName() == "Bullet")
 	{
 		KillMe();
+
+		// ƒV[ƒ“‘JˆÚˆ—
+		SceneManager* pSceneManager = SceneManager::GetInstance();
+		pSceneManager->ChangeScene(SCENE_ID_RESULT);
 	}
 }

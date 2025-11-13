@@ -1,8 +1,11 @@
 #include "PlayScene.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Engine/SceneManager.h"
+#include "Engine/Input.h"
 
 PlayScene::PlayScene(GameObject* parent)
+	:GameObject(parent, "PlayScene")
 {
 
 }
@@ -19,6 +22,14 @@ void PlayScene::Initialize()
 
 void PlayScene::Update()
 {
+	/*if (Input::IsKeyDown(DIK_SPACE))
+	{
+		SceneManager* sceneManager = dynamic_cast<SceneManager*>(pParent_);
+		if (sceneManager)
+		{
+			sceneManager->ChangeScene(SCENE_ID_RESULT);
+		}
+	}*/
 }
 
 void PlayScene::Draw()
