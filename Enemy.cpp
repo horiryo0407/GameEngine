@@ -37,13 +37,13 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	for(int i = 0; i < 3; i++)
-	{
-		transform_.position_.z = 50.0f + i * 5.0f; 
-		// 少しずつ手前に配置
-		pFbx->Draw(transform_);
-	}
-	//pFbx->Draw(transform_);
+	//for(int i = 0; i < 3; i++)
+	//{
+	//	transform_.position_.z = 50.0f + i * 5.0f; 
+	//	// 少しずつ手前に配置
+	//	pFbx->Draw(transform_);
+	//}
+	pFbx->Draw(transform_);
 }
 
 void Enemy::Release()
