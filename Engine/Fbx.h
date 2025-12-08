@@ -11,7 +11,19 @@
 #pragma comment(lib, "LibXml2-MD.lib")
 #pragma comment(lib, "zlib-MD.lib")
 
-
+namespace Math
+{
+	float Det(XMFLOAT3 a, XMFLOAT3 b, XMFLOAT3 c);
+	bool Intersect(XMFLOAT3 origin, XMFLOAT3 ray, XMFLOAT3 v0, XMFLOAT3 v1, XMFLOAT3 v2, float& dist);
+}
+//RayCastのためのデータを用意
+struct RayCastData
+{
+	XMFLOAT4 start;
+	XMFLOAT4 dir;
+	bool isHit;
+	float dist;
+};
 class Fbx
 {
 public:
@@ -57,5 +69,9 @@ private:
 	int vertexCount_;
 	int polygonCount_;
 	int materialCount_;
+
+	std::vector<VERTEX> pVertices_;
+	std::vector<std::vector<int>> pIndex_;
+	void RayCast(RayCastData& rayData);
 
 };
