@@ -13,17 +13,23 @@
 
 namespace Math
 {
+	//行列式を解く関数
 	float Det(XMFLOAT3 a, XMFLOAT3 b, XMFLOAT3 c);
+	//Rayと三角形の当たり判定を行う関数
 	bool Intersect(XMFLOAT3 origin, XMFLOAT3 ray, XMFLOAT3 v0, XMFLOAT3 v1, XMFLOAT3 v2, float& dist);
 }
+
+
+
 //RayCastのためのデータを用意
 struct RayCastData
 {
-	XMFLOAT4 start;
-	XMFLOAT4 dir;
-	bool isHit;
-	float dist;
+	XMFLOAT4 start;//Rayの始点
+	XMFLOAT4 dir;  //Rayの方向（正規化してあること）
+	bool isHit;    //当たったかどうか
+	float dist;    //始点からの距離
 };
+
 class Fbx
 {
 public:
@@ -36,7 +42,7 @@ public:
 	void InitIndex(FbxMesh* mesh);
 	void InitConstantBuffer();
 	void InitMaterial(FbxNode* pNode);
-
+	void RayCast(RayCastData& rayData);
 private:
 	struct MATERIAL
 	{
@@ -50,7 +56,6 @@ private:
 		XMMATRIX	matNormal;
 		XMFLOAT4	diffuse;
 		BOOL		materialFlag; //マテリアルがあるかないか
-		
 	};
 	struct VERTEX
 	{
@@ -70,8 +75,10 @@ private:
 	int polygonCount_;
 	int materialCount_;
 
-	std::vector<VERTEX> pVertices_;
-	std::vector<std::vector<int>> pIndex_;
-	void RayCast(RayCastData& rayData);
+	//★　失われし古代のデータたち
+	std::vector<VERTEX> pVertices_; //頂点データ全部
+	std::vector<std::vector<int>> ppIndex_; //マテリアルごとのインデックスデータ [material][index]
+	//auto& arr = ppIndex_[1];
+	//arr[0]~arr[index - 1];
 
 };
